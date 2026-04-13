@@ -45,8 +45,7 @@ export const useRemoveCartItem = () => {
   const { setCart } = useCartStore()
   return useMutation({
     mutationFn: (itemId: string) => cartApi.removeCartItem(itemId),
-    onSuccess: (res) => {
-      setCart(res.data.data.cart._id, res.data.numOfCartItems)
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
   })
@@ -59,7 +58,7 @@ export const useClearCart = () => {
     mutationFn: () => cartApi.clearCart(),
     onSuccess: () => {
       clearCart()
-      queryClient.invalidateQueries({ queryKey: ['cart'] })
+      queryClient.removeQueries({ queryKey: ['cart'] })
     },
   })
 }
