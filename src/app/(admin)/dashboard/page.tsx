@@ -39,10 +39,10 @@ function StatCard({ label, value, icon, isLoading }: StatCardProps) {
 }
 
 export default function DashboardPage() {
-  const { data: orders, isLoading: ordersLoading } = useOrders({ limit: 99999 })
-  const { data: products, isLoading: productsLoading } = useProducts({ limit: 99999 })
-  const { data: users, isLoading: usersLoading } = useUsers({ limit: 99999 })
-  const { data: categories, isLoading: categoriesLoading } = useCategories({ limit: 99999 })
+ const { data: orders, isLoading: ordersLoading } = useOrders()
+const { data: products, isLoading: productsLoading } = useProducts()
+const { data: users, isLoading: usersLoading } = useUsers()
+const { data: categories, isLoading: categoriesLoading } = useCategories()
 
   return (
     <div className="space-y-8">
@@ -53,25 +53,25 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label="المنتجات"
-          value={products?.meta?.totalResults ?? products?.data?.products?.length ?? 0}
+           value={products?.meta?.total ?? products?.data?.products?.length ?? 0}
           icon={<Package size={22} />}
           isLoading={productsLoading}
         />
         <StatCard
           label="الطلبات"
-          value={orders?.meta?.totalResults ?? orders?.data?.orders?.length ?? 0}
+          value={orders?.paginationResult?.totalResults ?? orders?.data?.orders?.length ?? 0}
           icon={<ShoppingBag size={22} />}
           isLoading={ordersLoading}
         />
         <StatCard
           label="المستخدمين"
-          value={users?.meta?.totalResults ?? users?.data?.users?.length ?? 0}
+          value={users?.results ?? users?.data?.users?.length ?? 0}
           icon={<Users size={22} />}
           isLoading={usersLoading}
         />
         <StatCard
           label="الفئات"
-          value={categories?.meta?.totalResults ?? categories?.data?.categories?.length ?? 0}
+          value={categories?.meta?.total ?? categories?.data?.categories?.length ?? 0}
           icon={<Tag size={22} />}
           isLoading={categoriesLoading}
         />

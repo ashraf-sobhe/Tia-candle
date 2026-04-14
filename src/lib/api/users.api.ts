@@ -1,9 +1,9 @@
 import api from './axios'
+import { UsersResponse } from '../types/user.types'
 
 export const usersApi = {
   getMe: () =>
     api.get('/users/me'),
-
   updateMe: (data: FormData) =>
     api.put('/users/me', data, {
       headers: { 'Content-Type': 'multipart/form-data' }

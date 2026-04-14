@@ -22,6 +22,7 @@ export interface Cart {
 export interface CartResponse {
   status: 'success'
   numOfCartItems: number
+  results: number
   data: {
     cart: Cart
   }
@@ -37,5 +38,5 @@ export interface UpdateCartItemRequest {
 }
 
 export interface ApplyCouponRequest {
-  coupon: string
+  couponName: string
 }

@@ -52,11 +52,12 @@ export interface ProductResponse {
   }
 }
 
+
 export interface PaginationResult {
   currentPage: number
   limit: number
   numberOfPages: number
-  total: number
+  total: number  
   next?: number
   prev?: number
 }

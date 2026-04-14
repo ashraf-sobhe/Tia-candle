@@ -195,7 +195,7 @@ export default function ProductsPage() {
           ) : (
             <>
               <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                {data?.meta?.totalResults} منتج
+                {data?.meta?.total} منتج
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {data?.data.products.map(product => (

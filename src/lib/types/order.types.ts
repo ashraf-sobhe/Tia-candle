@@ -35,9 +35,13 @@ export interface OrdersResponse {
   status: 'success'
   results: number
   paginationResult: {
+    totalResults: number   
     currentPage: number
     limit: number
     numberOfPages: number
+    totalPages: number     
+    prevPage: number | null  
+    nextPage: number | null  
   }
   data: {
     orders: Order[]

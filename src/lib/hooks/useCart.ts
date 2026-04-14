@@ -21,7 +21,7 @@ export const useAddToCart = () => {
   return useMutation({
     mutationFn: (data: AddToCartRequest) => cartApi.addToCart(data),
     onSuccess: (res) => {
-      setCart(res.data.data.cart._id, res.data.results)
+setCart(res.data.data.cart._id, res.data.results)
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
   })

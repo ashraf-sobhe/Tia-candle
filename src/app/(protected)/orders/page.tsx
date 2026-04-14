@@ -17,7 +17,7 @@ export default function MyOrdersPage() {
     )
   }
 
-  const orders = data?.data.order
+  const orders = data?.data.orders
 
   if (!orders || orders.length === 0) {
     return (

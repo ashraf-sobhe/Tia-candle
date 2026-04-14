@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import { useMe } from "@/lib/hooks/useUsers";
 import { useMyOrders } from "@/lib/hooks/useOrders";
 import { usersApi } from "@/lib/api/users.api";
@@ -39,7 +41,7 @@ type PasswordFormData = z.infer<typeof passwordSchema>;
 export default function ProfilePage() {
   const { data, isLoading, refetch } = useMe();
   const { data: ordersData, isLoading: ordersLoading } = useMyOrders();
-  const { setAuth, user } = useAuthStore();
+  const { setAuth, user, accessToken } = useAuthStore();
   const [profileError, setProfileError] = useState("");
   const [profileSuccess, setProfileSuccess] = useState(false);
   const [passwordError, setPasswordError] = useState("");
@@ -74,7 +76,7 @@ export default function ProfilePage() {
       if (formData.phone) data.append("phone", formData.phone);
       if (image) data.append("profileImage", image);
       const res = await usersApi.updateMe(data);
-      setAuth(res.data.data.user, user?.accessToken || "");
+    setAuth(res.data.data.user, accessToken || "");
       await refetch();
       setProfileSuccess(true);
     } catch (err) {
@@ -107,7 +109,7 @@ export default function ProfilePage() {
     );
   }
 
-  const orders = ordersData?.data?.order || []
+  const orders = ordersData?.data?.orders || []
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">

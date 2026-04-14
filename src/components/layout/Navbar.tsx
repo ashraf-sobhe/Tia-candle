@@ -16,8 +16,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
   const pathname = usePathname()
-  const desktopDropdownRef = useRef(null)
-  const mobileDropdownRef = useRef(null)
+  const desktopDropdownRef = useRef<HTMLDivElement>(null)
+const mobileDropdownRef = useRef<HTMLDivElement>(null)
 
   const authRoutes = ['/forgot-password', '/verify-code', '/reset-password']
   const isAuthPage = authRoutes.includes(pathname)
@@ -34,14 +34,14 @@ export default function Navbar() {
   }, [pathname])
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        desktopDropdownRef.current && !desktopDropdownRef.current.contains(e.target) &&
-        mobileDropdownRef.current && !mobileDropdownRef.current.contains(e.target)
-      ) {
-        setUserDropdown(false)
-      }
-    }
+    const handleClickOutside = (e: MouseEvent) => {
+  if (
+    desktopDropdownRef.current && !desktopDropdownRef.current.contains(e.target as Node) &&
+    mobileDropdownRef.current && !mobileDropdownRef.current.contains(e.target as Node)
+  ) {
+    setUserDropdown(false)
+  }
+}
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])

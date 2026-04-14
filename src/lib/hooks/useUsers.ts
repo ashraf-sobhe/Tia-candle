@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { usersApi } from '../api/users.api'
+import { UsersResponse } from '../types/user.types'
 
 export const useMe = () => {
   return useQuery({
@@ -11,7 +12,7 @@ export const useMe = () => {
 export const useUsers = () => {
   return useQuery({
     queryKey: ['users'],
-    queryFn: () => usersApi.getUsers().then(res => res.data),
+    queryFn: () => usersApi.getUsers().then(res => res.data as UsersResponse),
   })
 }
 

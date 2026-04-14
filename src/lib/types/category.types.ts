@@ -5,6 +5,7 @@ export interface Category {
   image?: string
   createdAt: string
   updatedAt: string
+  subCategories?: SubCategory[]
 }
 
 export interface SubCategory {
@@ -19,18 +20,6 @@ export interface SubCategory {
 export interface CategoriesResponse {
   status: 'success'
   results: number
-  paginationResult: {
-    currentPage: number
-    limit: number
-    numberOfPages: number
-  }
-  data: {
-    categories: Category[]
-  }
-}
-
-export interface CategoriesResponse {
-  status: 'success'
   meta: {
     currentPage: number
     limit: number
@@ -39,6 +28,12 @@ export interface CategoriesResponse {
   }
   data: {
     categories: Category[]
+  }
+}
+export interface CategoryResponse {
+  status: 'success'
+  data: {
+    category: Category
   }
 }
 
