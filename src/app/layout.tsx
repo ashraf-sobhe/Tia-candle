@@ -11,7 +11,7 @@ const cairo = Cairo({
 })
 
 export const metadata: Metadata = {
-  title: 'E-Shop',
+  title: 'Tia candle',
   description: 'متجر إلكتروني',
 }
 
